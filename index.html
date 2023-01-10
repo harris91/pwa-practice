@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="manifest" src="./manifest.json">
+    <meta name="theme-color" content="#fff">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="icon" type="image/png" sizes="16x16" href="images/icons/favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="images/icons/favicon-32x32.png">
+
+    <title>1st PWA Practice by Harris</title>
+
+    <style>
+        html,
+        body {
+            height: 100%;
+            background-color: #F3A530;
+            color: #fff;
+        }
+
+        .container {
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Hello! </h1>
+        <img src="/images/hello-pwa.png">
+        <p>by JS</p>
+    </div>
+
+</body>
+
+<!-- 서비스 워커 등록 -->
+<script>
+    ;(() => {
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('/serviceWorker.js')
+                .then(reg => {
+                    console.log('Registration successful', reg);
+                })
+                .catch(e => console.error('Error during service worker registration:', e));
+
+        } else {
+            console.warn('Service Worker is not supported');
+        }
+    })();
+</script>
+
+</html>
