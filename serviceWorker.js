@@ -1,9 +1,9 @@
 const cacheName = 'firstCache';     //캐시명 선언
 const fileNames = [                 //캐싱할 파일명
     // './',
-    './index.html',
-    './manifest.json',
-    './images/hello-pwa.png'
+    'index.html',
+    'manifest.json',
+    'images/hello-pwa.png'
 ];
 
 // 서비스워커 설치 및 캐싱

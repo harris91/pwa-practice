@@ -3,7 +3,7 @@
     "short_name": "1st PWA",
     "description": "1st PWA Practice.",
     "scope": ".",
-    "start_url": "./pwa-practice/",
+    "start_url": "./",
     "display": "fullscreen",
     "orientation": "portrait",
     "background_color": "gold",
