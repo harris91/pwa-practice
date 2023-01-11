@@ -24,7 +24,6 @@ self.addEventListener('activate', event => {
     console.log(event, 'Service worker activated!');
 });
 
-
 // 데이터 요청시 캐시반환 혹은 네트워크 요청
 self.addEventListener('fetch', event => {
     event.respondWith(
