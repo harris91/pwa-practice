@@ -7,7 +7,7 @@
     "display": "fullscreen",
     "orientation": "portrait",
     "background_color": "gold",
-    "theme_color": "#orangered",
+    "theme_color": "orangered",
     "icons": [
         {
             "src": "images/icons/android-chrome-512x512.png",

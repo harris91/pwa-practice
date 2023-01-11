@@ -2,9 +2,9 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <link rel="manifest" src="./manifest.json">
-    <meta name="theme-color" content="#fff">
+    <meta charset="utf-8">
+    <link rel="manifest" href="./manifest.json">
+    <meta name="theme-color" content="#ffffff">
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -19,6 +19,7 @@
             height: 100%;
             background-color: #F3A530;
             color: #fff;
+            margin:0;
         }
 
         .container {
@@ -33,7 +34,7 @@
 <body>
     <div class="container">
         <h1>Hello! </h1>&nbsp;&nbsp;
-        <img src="images/hello-pwa.png">
+        <img src="images/hello-pwa.png" alt="" />
         <p>by JS</p>
     </div>
 
@@ -41,12 +42,14 @@
 
 <!-- 서비스 워커 등록 -->
 <script>
+    const fontStyle = 'font-size:15px;font-weight:900;background:lime;color:gold;';
+
     if ('serviceWorker' in navigator) {
         navigator.serviceWorker.register('serviceWorker.js')
             .then(reg => {
-                console.log('Registration successful', reg);
+                console.log('%c [Succeed] serviceWorker Regist', fontStyle, reg);
             })
-            .catch(e => console.error('Error during service worker registration:', e));
+            .catch(e => console.error('%c [Error] serviceWorker Regist:', fontStyle, e));
 
     } else {
         console.warn('Service Worker is not supported');
