@@ -32,8 +32,8 @@
 
 <body>
     <div class="container">
-        <h1>Hello! </h1>
-        <img src="/images/hello-pwa.png">
+        <h1>Hello! </h1>&nbsp;&nbsp;
+        <img src="./images/hello-pwa.png">
         <p>by JS</p>
     </div>
 
@@ -41,18 +41,16 @@
 
 <!-- 서비스 워커 등록 -->
 <script>
-    ;(() => {
-        if ('serviceWorker' in navigator) {
-            navigator.serviceWorker.register('/serviceWorker.js')
-                .then(reg => {
-                    console.log('Registration successful', reg);
-                })
-                .catch(e => console.error('Error during service worker registration:', e));
+    if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('/serviceWorker.js')
+            .then(reg => {
+                console.log('Registration successful', reg);
+            })
+            .catch(e => console.error('Error during service worker registration:', e));
 
-        } else {
-            console.warn('Service Worker is not supported');
-        }
-    })();
+    } else {
+        console.warn('Service Worker is not supported');
+    }
 </script>
 
 </html>
