@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Start Vue Web</title>
+    <!-- vuejs 로드 -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+</head>
+<body>
+    <div id="main">
+        <!-- mustache 사용, vue data의 변수 바인딩 -->
+        <p>{{ title }}</p>  
+    </div>
+    
+    <script>
+        // Vue 객체 생성 및 앱 초기화
+        new Vue({
+            el: '#main',                // #main 앨리먼트에 연동
+            data: {
+                title: 'Hello Vue.js!'  // 데이터 값
+            }
+        });
+    </script>
+
+</body>
+</html>
