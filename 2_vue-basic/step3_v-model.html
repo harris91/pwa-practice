@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue v-model</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+</head>
+<body>
+    <div id="main">
+        <p>
+            <b>v-model 입력 값:</b> {{msg}}
+        </p>
+
+        <!-- v-model로 선언된 변수와 동기화 됨 -->
+        <input v-model:value="msg">
+    </div>
+</body>
+<script>
+    const app = new Vue({
+        el: '#main',
+        data: {
+            msg: 'hello world'
+        }
+    })
+</script>
+</html>
