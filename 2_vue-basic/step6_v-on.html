@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue v-on</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+</head>
+<body>
+    <div id="app">
+        <h1> {{ title }} </h1>        
+        <button v-on:click="changeTitle(flag)">타이틀 변경</button>
+    </div>
+</body>
+<script>
+    new Vue({
+        el:'#app',
+        data: {
+            title: '안녕하세요.',
+            flag: false,
+        },
+        methods: {
+            changeTitle(){
+                this.flag = !this.flag;
+                this.title = this.flag ? 'Hello World!' : '안녕하세요';
+            }
+        }
+    })
+</script>
+</html>
