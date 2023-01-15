@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue v-if</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+</head>
+<body>
+    <div id="app">
+        <h1>{{ flag }}</h1>
+        <p v-if="flag">왼쪽</p>
+        <p v-else>오른쪽</p>
+    </div>
+
+    <button onclick="retryRandom()">랜덤뽑기</button>
+</body>
+<script>
+    let app = new Vue({
+        el: "#app",
+        data: {
+            flag: getRandom()
+        }
+    })
+
+    function getRandom() {
+        return Math.random() > 0.5   //0.5보다 크면 왼쪽
+    } 
+
+    function retryRandom() {
+        app.$data.flag = this.getRandom();
+    }
+</script>
+</html>
