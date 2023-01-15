@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue v-for</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+</head>
+<body>
+    <div id="main">
+        <h1>좋아하는 색상은?</h1>
+        <ol>
+            <li v-for="item in colors">
+                <span :style="`background:${item.code}`">{{item.color}}</span><br><br>
+            </li>
+        </ol>
+    </div>
+</body>
+<script>
+    new Vue({
+        el: '#main',
+        data: {
+            colors: [
+                {color:'red', code:'#ff0000'},
+                {color:'gold', code:'#ffd700'},
+                {color:'lime', code:'#00ff00'},
+                {color:'random', code: '#'+Math.floor(Math.random()*16777215).toString(16)}
+            ]
+        }
+    })
+
+</script>
+</html>
