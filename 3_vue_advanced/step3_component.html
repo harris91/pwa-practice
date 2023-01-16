@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue Component</title>
+    
+    <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+</head>
+<body>
+    <div id="main">
+        <h1>{{ this.title }}</h1>
+
+        <brand-component></brand-component> <!-- 컴포넌트 사용 1 -->
+        <br>
+        <brand-component></brand-component> <!-- 컴포넌트 사용 2 -->
+    </div>
+</body>
+<script>
+    Vue.component('brand-component', {  // 컴포넌트 명 정의
+        data() {  // function을 꼭 선언해줘야 동작함..
+            return {
+                brands: [
+                    {name:'SUPREME', type:'street'},
+                    {name:'NEIGHBORHOOD', type:'street'},
+                    {name:'Nike', type:'shoes'}
+                ]
+            }
+        },
+        methods: {
+            clickBtn() {
+                this.brands[0].name = 'helloworld';
+            }
+        },
+        template: `
+            <div>
+                <div>
+                    <button @click="clickBtn">click</button>
+                    <table border="1" width="300" style="text-align:center;">
+                        <thead style="background:#333; color:white;">
+                            <th width="200">Name</th>
+                            <th>type</th>
+                        </thead>
+
+                        <tr v-for="item in brands">
+                            <td>{{ item.name }}</td>
+                            <td>{{ item.type }}</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        `
+    })
+
+    new Vue({
+        el:'#main',
+        data: {
+            title: '브랜드 리스트'
+        }
+    })
+</script>
+</html>
