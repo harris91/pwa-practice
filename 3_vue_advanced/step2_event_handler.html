@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue Event Handler</title>
+    
+    <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+</head>
+<body>
+    <div id="app">
+        <button @click="onClickCount">click!</button>
+        <p>카운트 값: {{ cntNum }}</p>
+        <p>클릭 수: {{ clickCnt }}</p>
+        <p>카운트 다운: {{ getCount }}</p>
+    </div>
+</body>
+<script>
+    new Vue({
+        el:'#app',
+        data: {
+            clickCnt: 0,
+            cntNum: 10,
+        },
+        computed: {
+            getCount() {
+                if(this.cntNum == this.clickCnt) {
+                    this.cntNum = Math.floor(Math.random()*20+1);
+                    this.clickCnt = 0;
+                }
+
+                return this.cntNum - this.clickCnt;
+            }
+        },
+        methods: {
+            onClickCount() {
+                this.clickCnt++;
+            }
+        }
+    })
+</script>
+</html>
