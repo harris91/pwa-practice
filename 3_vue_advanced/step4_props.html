@@ -18,7 +18,8 @@
             <favorite-menus 
                 v-for="item in menus"
                 v-bind:menu="item"
-                v-bind:key="item.id">
+                v-bind:key="item.id"
+                v-bind:harris="harris">
             </favorite-menus>
         </ol>
     </div>
@@ -27,18 +28,19 @@
 <script>
     //컴포넌트 선언
     Vue.component('favorite-menus', {
-        props: ['menu'],  //부모에서 전달받은 props명 - camel case는 적용안됨
-        template: '<li>{{ menu.name }}  ( {{menu.price}}원 )</li>'
+        props: ['menu','harris'],  //부모에서 전달받은 props명 - camel case는 적용안됨
+        template: '<li>{{ menu.name }}  ( {{menu.price}}원 ) >> harris: {{ harris() }}원</li>'
     });
 
     new Vue({
         el:'#app',
         data: {
             menus: [
-          { id: 1, price: 8000, name: '치즈버거' },
-          { id: 2, price: 9000, name: '옛날통닭' },
-          { id: 3, price: 7000, name: '순두부찌개' }
-        ]
+                { id: 1, price: 8000, name: '치즈버거' },
+                { id: 2, price: 9000, name: '옛날통닭' },
+                { id: 3, price: 7000, name: '순두부찌개' }
+            ],
+            harris: ()=> Math.floor(Math.random()*9999),
         }
     })
 </script>
