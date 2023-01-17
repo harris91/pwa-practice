@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue Component</title>
+    
+    <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+</head>
+<body>
+    <div id="app">
+        <h1>좋아하는 메뉴</h1>
+
+        <ol>
+            <!-- 
+                컴포넌트에 전달할 props 명 입력
+                v-bind:{props명}="{값}"
+            -->
+            <favorite-menus 
+                v-for="item in menus"
+                v-bind:menu="item"
+                v-bind:key="item.id">
+            </favorite-menus>
+        </ol>
+    </div>
+</body>
+
+<script>
+    //컴포넌트 선언
+    Vue.component('favorite-menus', {
+        props: ['menu'],  //부모에서 전달받은 props명 - camel case는 적용안됨
+        template: '<li>{{ menu.name }}  ( {{menu.price}}원 )</li>'
+    });
+
+    new Vue({
+        el:'#app',
+        data: {
+            menus: [
+          { id: 1, price: 8000, name: '치즈버거' },
+          { id: 2, price: 9000, name: '옛날통닭' },
+          { id: 3, price: 7000, name: '순두부찌개' }
+        ]
+        }
+    })
+</script>
+</html>
