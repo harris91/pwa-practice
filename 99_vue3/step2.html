@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>v-vind</title>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/vue@2"></script> -->
+    <script src="https://unpkg.com/vue@3"></script>
+</head>
+<body>
+    <div id="main">
+        <h1 id="title" v-bind:class="styleNames[getRandom] + '_style'">{{styleNames[getRandom]}}</h1>
+        <input style="text-align:center;" :value="getYear" >
+    </div>
+</body>
+
+<script>
+    Vue.createApp({
+            el: '#main',
+            data() {
+                return {
+                    getYear: new Date().getFullYear(),
+                    styleNames: ['SUPREME', 'IKEA', 'reverse'],
+                    getRandom: Math.floor(Math.random()*3)
+                }
+            }
+        }).mount('#main')
+</script>
+<style>
+    html,body { height: 100%; margin:0; }
+    #main { height:100%; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+    .SUPREME_style { color: white; background:red;}
+    .IKEA_style { color: gold; background: blue;}
+    .reverse_style { color: white; background: black};
+</style>
+</html>

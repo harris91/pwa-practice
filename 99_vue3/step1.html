@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Start Vue Web</title>
+    <!-- vuejs 로드 -->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/vue@2"></script> -->
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+</head>
+<body>
+    <div id="main">
+        <!-- mustache 사용, vue data의 변수 바인딩 -->
+        <p>{{ title }}</p>  
+    </div>
+    
+    <!-- 이거 vue2 같은데 잠시만 -->
+    <!-- vue 3 진행하기전에 확인하나 하고 카톡 드리겠슴당~ -->
+    <script>
+        const { createApp } = Vue
+        // Vue 객체 생성 및 앱 초기화
+        createApp({
+            data() {
+                return {
+                    title: 'Hello Vue.js!'  // 데이터 값
+                }
+            }
+        }).mount('#main');
+    </script>
+
+</body>
+</html>
