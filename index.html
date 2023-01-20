@@ -4,12 +4,14 @@
 <head>
     <meta charset="UTF-8">
     <title>PWA-practice</title>
-    <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="./lib/vue2.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 </head>
 
 <body>
 
-    <div id="app">
+    <div id="appIndex">
         <div id="side-bar">
             <div id="side-top" class="font-bold">
                 <a id="side-toggle" class="left" @click="menuToggleClick"> {{ menuToggleIcon }} </a>
@@ -21,10 +23,10 @@
                     <tr v-for="(main, idx) in sideCategory">
                         <td>
                             <div @click="main.isSelect = !main.isSelect">
-                                {{main.isSelect ? '▼' : '▶'}} {{ main.name }}
+                                {{ main.isSelect ? '▼' : '▶' }} {{ main.name }}
                             </div>
-                            <ol :style="`display:${main.isSelect ? 'block':'none'}`">
-                                <li v-for="(sub, subIdx) in main.sub" style="margin-left:20px;"> 
+                            <ol v-show="main.isSelect">
+                                <li v-for="(sub, subIdx) in main.sub" style="margin-left:20px;" @click="setContent(sub.path)"> 
                                     {{ sub.name }}
                                 </li>
                             </ol>
@@ -33,14 +35,18 @@
                 </table>
             </div>
         </div>
-        <div id="contents">
+        <div id="contents" style="width:100%;height:100%;">
+            <div id="comp"></div>
         </div>
+    </div>
+    <div style="width:100%; height:auto; padding:15px; background:#ccc; font-family: monospace;">
+        <code id="innerCode"></code>
     </div>
 </body>
 
 <script>
     new Vue({
-        el:'#app',
+        el:'#appIndex',
         data: {
 
             // SideBar 영역
@@ -49,16 +55,16 @@
             selectMenuIdx: -1,
             sideCategory: [
                 { name: "PWA 기본",  isSelect: false, sub: [ 
-                        { name: 'PWA 기본기', path: '1_pwa-basic\\index.html'} 
+                        { name: 'PWA 기본기', path: '1_pwa-basic/index.html'} 
                     ] 
                 },
                 { name: "Vue 기초", isSelect: false, sub: [ 
-                        { name: 'Vue 시작', path: '2_vue-basic\\step1_hello_vuejs.html'},
-                        { name: 'v-bind', path: '2_vue-basic\\step2_v-bind.html'},
-                        { name: 'v-model', path: '2_vue-basic\\step3_v-model.html'},
-                        { name: 'v-if', path: '2_vue-basic\\step4_v-if.html'},
-                        { name: 'v-for', path: '2_vue-basic\\step5_v-for.html'},
-                        { name: 'v-on', path: '2_vue-basic\\step6_v-on.html'}
+                        { name: 'vue basic', path: '2_vue-basic/step1_hello_vuejs.html'},
+                        { name: 'v-bind', path: '2_vue-basic/step2_v-bind.html'},
+                        { name: 'v-model', path: '2_vue-basic/step3_v-model.html'},
+                        { name: 'v-if', path: '2_vue-basic/step4_v-if.html'},
+                        { name: 'v-for', path: '2_vue-basic/step5_v-for.html'},
+                        { name: 'v-on', path: '2_vue-basic/step6_v-on.html'}
                     ] 
                 },
             ],
@@ -79,9 +85,13 @@
             
                 this.isShowMenu = !this.isShowMenu;
             },
-            clickMain(idx) {
-                console.log(el);
-            }
+            setContent: path => {
+                $("#comp").load(`./${path}`);
+
+                document.getElementById('innerCode').innerText = document.getElementById('comp').innerHTML;
+
+            },
+        
         },
     })
 </script>
@@ -94,7 +104,8 @@
         /* background-color: #F3A530; */
     }
 
-    #app {
+    #appIndex {
+        display:flex;
         height:100%;
         width:100%;
     }
@@ -109,10 +120,12 @@
         height:100%;
     }
     #side-bar {
-        width:230px;
+        flex:0 0 20%;
+        min-width:160px;
         height:100%;
         background:#222;
         color:white;
+        float:left;
     }
     #side-top {
         height:30px;
@@ -125,6 +138,7 @@
     }
 
     #side-contents {
+        flex:1 1 80%;
         width:100%;
         height:10px;
         margin-top:150px;
@@ -144,7 +158,7 @@
     #side-contents div:hover{
         /* background:#F3A530; */
         background:#2c2c2c;
-        color:black;
+        color:#F3A530;
         cursor:pointer;
     }
     #side-contents li:hover{

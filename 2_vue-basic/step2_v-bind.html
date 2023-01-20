@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Vue Bind</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- vuejs 로드 -->
     <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
 </head>
@@ -12,7 +13,7 @@
         <h1 id="title" v-bind:class="styleNames[getRandom] + '_style'">{{styleNames[getRandom]}}</h1>
         <input style="text-align:center;" :value="getYear" >
     </div>
-    <script>
+    <script scoped>
         let app = new Vue({
             el: '#main',
             data: {
@@ -25,7 +26,7 @@
 </body>
 
 <style>
-    html,body { height: 100%; color: #fff; margin:0; }
+    html,body { height: 100%; margin:0; }
     #main { height:100%; display: flex; flex-direction: column; align-items: center; justify-content: center; }
 
     .SUPREME_style { color: white; background:red;}

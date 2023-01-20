@@ -6,14 +6,14 @@
     <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
 </head>
 <body>
-    <div id="app">
+    <div id="main">
         <h1> {{ title }} </h1>        
         <button v-on:click="changeTitle(flag)">타이틀 변경</button>
     </div>
 </body>
-<script>
+<script scoped>
     new Vue({
-        el:'#app',
+        el:'#main',
         data: {
             title: '안녕하세요.',
             flag: false,
@@ -26,4 +26,8 @@
         }
     })
 </script>
+<style>
+    html,body { height: 100%; margin:0; }
+    #main { height:100%; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+</style>
 </html>
