@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Mission - component+prop</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+</head>
+<script>
+    
+</script>
+<body>
+    <div id="app">
+        <p>기본 방식</p>
+        <simple-counter :start_count="1" ref="hey"></simple-counter>
+        <simple-counter :start_count="10"></simple-counter>
+        <simple-counter :start_count="100"></simple-counter>
+
+        <hr>
+        <p> v-for 적용</p>
+        <simple-counter v-for="num of countArr" :start_count="num"></simple-counter>
+    </div>
+</body>
+
+<script>
+    Vue.component('simple-counter', {
+        props: ['start_count'],
+        template: `
+            <button @click="counterClick">
+                카운터: {{ cnt }} 
+            </button>
+        `,
+        data: function() {
+            return {
+                cnt: this.start_count
+            }
+        },
+        computed: {
+            getCounter() {
+                return this.cnt;
+            }
+        },
+        methods: {
+            counterClick() {
+                this.cnt++;
+            } 
+        },
+    })
+
+
+    var app = new Vue({
+        el:'#app',
+        data: {
+            countArr: [2, 4, 8]
+        },
+        methods: {
+            harris() {
+                this.$refs.hey
+            }     
+        }
+    })
+
+</script>
+</html>
