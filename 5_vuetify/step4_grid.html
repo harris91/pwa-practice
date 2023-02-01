@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Card Typo</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900|Material+Icons" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/@mdi/font@3.x/css/materialdesignicons.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.min.css" rel="stylesheet">
+
+    <!-- 필요한 Vue.js와 Vuetify.js의 자바스크립트 연결 -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.x/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.js"></script>
+
+    <style>
+        /* 테두리가 있는 그리드 스타일 */
+        .border_style { 
+            /* 초록색 */
+            border-color:rgb(5,121,30);
+            border-width:1px;
+            border-style:solid;
+
+            /* 연한 초록색 */
+            background-color:rgb(153,204,14);
+            
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <v-app>
+            <v-main>
+                <v-container>
+                    <!-- 한 행은 12개 열이 기준 -->
+                    <v-row class="text-sm-center">
+                        <v-col cols="12" class="border_style">xs12</v-col>
+
+                        <v-col cols="6" class="border_style">xs6</v-col>
+                        <v-col cols="3" class="border_style">xs3</v-col>
+
+                        <!-- 현재 열이 9개이므로 열4개를 추가하면 12개를 초과하여, 자동 줄바꿈  -->
+                        <v-col cols="4" class="border_style">xs4</v-col>
+                    </v-row>
+                </v-container>
+            </v-main>
+        </v-app>
+    </div>
+</body>
+<script>
+    var app = new Vue({
+        el:'#app',
+        vuetify: new Vuetify()
+    })
+</script>
+</html>
