@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -15,18 +16,19 @@
 
     <style>
         /* 테두리가 있는 그리드 스타일 */
-        .border_style { 
+        .border_style {
             /* 초록색 */
-            border-color:rgb(5,121,30);
-            border-width:1px;
-            border-style:solid;
+            border-color: rgb(5, 121, 30);
+            border-width: 1px;
+            border-style: solid;
 
             /* 연한 초록색 */
-            background-color:rgb(153,204,14);
-            
+            background-color: rgb(153, 204, 14);
+
         }
     </style>
 </head>
+
 <body>
     <div id="app">
         <v-app>
@@ -41,6 +43,24 @@
 
                         <!-- 현재 열이 9개이므로 열4개를 추가하면 12개를 초과하여, 자동 줄바꿈  -->
                         <v-col cols="4" class="border_style">xs4</v-col>
+
+                        <!-- 12열 생성. 8개 넘으면 자동으로 줄바꿈 -->
+                        <v-col cols="1" v-for="item in 12" v-bind:key="item.id" class="border_style">xs1</v-col>
+                    </v-row>
+                    
+                    <v-row class="text-center">
+                        <!-- 20열 생성. 12개가 넘으면 자동으로 줄바꿈 -->
+                        <v-col cols="1" v-for="item in 20" v-bind:key="item.id" class="border_style">xs1-1</v-col>
+                    </v-row>
+                </v-container>
+
+                <!-- fluid  -->
+                <v-container fluid> 
+                    <v-row class="text-center">
+                        <v-col sm="4" class="border_style">sm4</v-col>
+
+                        <!--offset으로 그리드 사이에 4개의 열 간격을 띄움-->
+                        <v-col sm="4" offset-sm="4" class="border_style">sm4</v-col>
                     </v-row>
                 </v-container>
             </v-main>
@@ -49,8 +69,9 @@
 </body>
 <script>
     var app = new Vue({
-        el:'#app',
+        el: '#app',
         vuetify: new Vuetify()
     })
 </script>
+
 </html>
