@@ -18,17 +18,59 @@
     <div id="app">
         <v-app>
             <v-main>
-                <v-card height="100%" class="d-flex display-2 align-center justify-center">
-                    선택: {{ btnList[sSelect].text }}
+                <v-card class="mx-auto mt-6" max-width="450">
+                    <v-img :src="`https://picsum.photos/id/${randomPic}/0/0/`" height="200px"></v-img>
+                    <v-list-item three-line>
+                        <v-list-item-content>
+                            <div class="text-overline mb-4">
+                                선택메뉴
+                            </div>
+                            <v-list-item-title class="text-h5 mb-5">
+                                {{ btnList[sSelect].text }}
+                            </v-list-item-title>
+                            <v-list-item-subtitle>{{ btnList[sSelect].text }} 메뉴를 선택하셨습니다.</v-list-item-subtitle>
+                        </v-list-item-content>
+
+                        <v-list-item-avatar tile size="130" color="grey">
+                            <v-icon color="white" size="50">{{ btnList[sSelect].icon }}</v-icon>
+                        </v-list-item-avatar>
+                    </v-list-item>
+
+                    <v-card-actions>
+                        <v-btn text color="teal accent-4" @click="reveal = true">
+                            상세
+                        </v-btn>
+                    </v-card-actions>
+
+                    <v-expand-transition>
+                        <v-card v-if="reveal" class="transition-fast-in-fast-out v-card--reveal" style="height: 100%;">
+                            <v-card-text class="pb-0">
+                                <p class="text-h4 text--primary">
+                                    상세
+                                </p>
+                                <p> Vuetify 공식 문서를 보고 응용하여, 생성해보았습니다.<br>
+                                    <b>'{{ btnList[sSelect].text }}'</b>의 상세 내용입니다.
+                                </p>
+                            </v-card-text>
+                            <v-card-actions class="pt-0">
+                                <v-btn text absolute bottom color="teal accent-4" @click="reveal = false">
+                                    닫기
+                                </v-btn>
+                            </v-card-actions>
+                        </v-card>
+                    </v-expand-transition>
                 </v-card>
             </v-main>
 
             <v-footer>
                 <!-- step07 응용. 버튼 색상 강조 추가 -->
                 <v-bottom-navigation absolute v-model="sSelect" dark>
-                    <v-btn v-for="(val, idx) of btnList" :key="idx" :class="{ selectBtn : isSelected(val,idx) }">
+                    <v-btn v-for="(val, idx) of btnList" 
+                        :key="idx" 
+                        :class="{ selectBtn : isSelected(val,idx) }"
+                        @click="clickMenu">
                         {{ val.text }}
-                        <v-icon>directions_{{ val.icon }}</v-icon>
+                        <v-icon>{{ val.icon }}</v-icon>
                     </v-btn>
                 </v-bottom-navigation>
             </v-footer>
@@ -44,28 +86,39 @@
             return {
                 sSelect: 0,
                 btnList: [
-                    {text: '지하철', icon: 'subway'},
-                    {text: '버스', icon: 'bus'},
-                    {text: '도보', icon: 'walk'},
-                    {text: '자전거', icon: 'bike'},
+                    { text: '즐겨찾기', icon: 'star' },
+                    { text: '지하철', icon: 'directions_subway' },
+                    { text: '버스', icon: 'directions_bus' },
+                    { text: '도보', icon: 'directions_walk' },
+                    { text: '자전거', icon: 'directions_bike' },
                 ],
-                buttonStyle: 'color: gold !important'
+                reveal: false,
+                randomPic: 900+Math.floor(Math.random()*50),
             }
         },
         computed: {
             isSelected() {
-                return (val, idx) => {
-                    return this.sSelect == idx;
-                }
-                    // style 인경우
-                    //return idx == this.sSelect ? 'color: gold !important' : '';
+                return (val, idx) => this.sSelect == idx;
             }
         },
+        methods: {
+            clickMenu() {
+                this.reveal = false;
+                this.randomPic = 900+Math.floor(Math.random()*50);
+            }
+        }
     })
 </script>
 <style>
-    .selectBtn { 
-        color:gold !important;
+    .selectBtn {
+        color: goldenrod !important;
+    }
+
+    .v-card--reveal {
+        bottom: 0;
+        opacity: 1 !important;
+        position: absolute;
+        width: 100%;
     }
 </style>
 
