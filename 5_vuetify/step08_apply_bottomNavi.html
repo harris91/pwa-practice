@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Bottom Navigation_apply</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900|Material+Icons" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/@mdi/font@3.x/css/materialdesignicons.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.min.css" rel="stylesheet">
+
+    <!-- 필요한 Vue.js와 Vuetify.js의 자바스크립트 연결 -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.x/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <v-app>
+            <v-main>
+                <v-card height="100%" class="d-flex display-2 align-center justify-center">
+                    선택: {{ btnList[sSelect].text }}
+                </v-card>
+            </v-main>
+
+            <v-footer>
+                <!-- step07 응용. 버튼 색상 강조 추가 -->
+                <v-bottom-navigation absolute v-model="sSelect" dark>
+                    <v-btn v-for="(val, idx) of btnList" :key="idx" :class="{ selectBtn : isSelected(val,idx) }">
+                        {{ val.text }}
+                        <v-icon>directions_{{ val.icon }}</v-icon>
+                    </v-btn>
+                </v-bottom-navigation>
+            </v-footer>
+        </v-app>
+    </div>
+</body>
+
+<script>
+    const app = new Vue({
+        el: '#app',
+        vuetify: new Vuetify(),
+        data() {
+            return {
+                sSelect: 0,
+                btnList: [
+                    {text: '지하철', icon: 'subway'},
+                    {text: '버스', icon: 'bus'},
+                    {text: '도보', icon: 'walk'},
+                    {text: '자전거', icon: 'bike'},
+                ],
+                buttonStyle: 'color: gold !important'
+            }
+        },
+        computed: {
+            isSelected() {
+                return (val, idx) => {
+                    return this.sSelect == idx;
+                }
+                    // style 인경우
+                    //return idx == this.sSelect ? 'color: gold !important' : '';
+            }
+        },
+    })
+</script>
+<style>
+    .selectBtn { 
+        color:gold !important;
+    }
+</style>
+
+</html>
