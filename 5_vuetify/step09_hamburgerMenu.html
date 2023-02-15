@@ -41,7 +41,7 @@
                         </v-list-item>
                     </v-list>
                     <v-btn variant="text" icon @click.stop="hamburger = !hamburger">
-                        <v-icon>mdi mdi-chevron-left</v-icon>
+                        <v-icon>mdi-chevron-left</v-icon>
                     </v-btn>
                 </v-toolbar>
                 <v-divider/></v-divider>
@@ -57,6 +57,13 @@
                     </v-list-item>
                 </v-list>
             </v-navigation-drawer>
+
+            <v-main>
+                <v-container class="up-and-down">
+                    <v-icon size="50" color="red">mdi-arrow-up-bold</v-icon>
+                    <h2>Click!</h2>
+                </v-container>
+            </v-main>
         </v-app>
     </div>
 </body>
@@ -67,7 +74,7 @@
         vuetify: new Vuetify(),
         data() {
             return {
-                hamburger: true,
+                hamburger: false,
                 menuList: [
                     {icon: 'mdi mdi-facebook', title: 'facebook', url: 'https://www.facebook.com'},
                     {icon: 'mdi mdi-google', title: 'google', url: 'https://www.google.com'},
@@ -79,5 +86,17 @@
         methods: {}
     })
 </script>
+
+<style>
+.up-and-down {
+    animation: MoveUpDown 2s linear infinite;
+}
+
+@keyframes MoveUpDown {
+  50% {
+    margin-top:-20px;
+  }
+}
+</style>
 
 </html>
