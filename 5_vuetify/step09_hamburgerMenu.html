@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Bottom Navigation_apply</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900|Material+Icons" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/@mdi/font@7.x/css/materialdesignicons.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.min.css" rel="stylesheet">
+
+    <!-- 필요한 Vue.js와 Vuetify.js의 자바스크립트 연결 -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.x/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.js"></script>
+    <script src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <v-app>
+            <!-- 상단 영역에 툴바를 배치하고 왼쪽에 메뉴 생성 -->
+            <v-app-bar app color="secondary" dark>
+                <!-- 메뉴 아이콘 클릭 시 기능 비활성화 -->
+                <v-app-bar-nav-icon @click.stop="hamburger = !hamburger"></v-app-bar-nav-icon>  
+                <v-toolbar-title> Header Title</v-toolbar-title>
+            </v-app-bar>
+
+            <!-- hamburger가 true이면 메뉴가 오픈되도록 model 값에 바인딩 -->
+            <v-navigation-drawer absolute temporary v-model="hamburger">
+                <!-- 툴바를 이용하여 안쪽 메뉴 제목을 생성 -->
+                <v-toolbar flat height="70px">
+                    <v-list>
+                        <v-list-item>
+                            <v-list-item-avatar>
+                                <img src="https://randomuser.me/api/portraits/men/40.jpg">
+                            </v-list-item-avatar>
+                            <v-list-item-content>
+                                <v-list-item-title class="title"><b>Harris</b></v-list-item-title>
+                                <v-list-item-subtitle>관리자</v-list-item-subtitle>
+                            </v-list-item-content>
+                        </v-list-item>
+                    </v-list>
+                    <v-btn variant="text" icon @click.stop="hamburger = !hamburger">
+                        <v-icon>mdi mdi-chevron-left</v-icon>
+                    </v-btn>
+                </v-toolbar>
+                <v-divider/></v-divider>
+
+                <!-- 메뉴 목록 -->
+                <v-list>
+                    <v-list-item v-for="item in menuList" :key="item.title" 
+                    :href="item.url" target="_blank" rel="noopener noreferrer">
+                        <v-list-item-action>
+                            <v-icon>{{ item.icon }}</v-icon>
+                        </v-list-item-action>
+                        <v-list-item-content>{{ item.title }}</v-list-item-content>
+                    </v-list-item>
+                </v-list>
+            </v-navigation-drawer>
+        </v-app>
+    </div>
+</body>
+
+<script>
+    const app = new Vue({
+        el:'#app',
+        vuetify: new Vuetify(),
+        data() {
+            return {
+                hamburger: true,
+                menuList: [
+                    {icon: 'mdi mdi-facebook', title: 'facebook', url: 'https://www.facebook.com'},
+                    {icon: 'mdi mdi-google', title: 'google', url: 'https://www.google.com'},
+                    {icon: 'mdi mdi-github', title: 'github', url: 'https://github.com/harris91'},
+                ],
+            }
+        },
+        computed: {},
+        methods: {}
+    })
+</script>
+
+</html>
