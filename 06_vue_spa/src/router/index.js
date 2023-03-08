@@ -1,31 +1,32 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import HomeView from '../views/HomeView.vue'
+
+//main, sub 페이지 컴포넌트 모듈 2개를 가져오기
+import mainPage from '@/components/mainPage';
+import subPage from '@/components/subPage';
 
 Vue.use(VueRouter)
-
-const routes = [
-  {
-    path: '/',
-    name: 'home',
-    component: HomeView
-  },
-  {
-    path: '/about',
-    name: 'about',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: function () {
-      return import(/* webpackChunkName: "about" */ '../views/AboutView.vue')
-    }
-  }
-]
 
 const router = new VueRouter({
   mode: 'history',
   base: process.env.BASE_URL,
-  routes
+  routes : [
+    {
+      path: '/',
+      name: 'home',
+      component: mainPage
+    },
+    {
+      path: '/main',
+      name: 'main_page',
+      component: mainPage
+    },
+    {
+      path: '/sub',
+      name: 'sub_page',
+      component: subPage
+    }
+  ]
 })
 
 export default router
